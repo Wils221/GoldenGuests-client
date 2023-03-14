@@ -7,7 +7,7 @@ export const Register = () => {
     const firstName = useRef()
     const lastName = useRef()
     const username = useRef()
-    const bio = useRef()
+    const organization =useRef()
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
@@ -23,14 +23,16 @@ export const Register = () => {
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
                 "password": password.current.value,
+                "organization": organization.current.value,
                 "isTicketHolder": isTicketHolder
+                
             }
 
             registerUser(newUser)
                 .then(res => {
                     if ("token" in res) {
-                        localStorage.setItem("lu_token", res.token)
-                        navigate("/")
+                        localStorage.setItem("gg_user", res.token)
+                        navigate("/login")
                     }
                 })
         } else {
@@ -68,15 +70,23 @@ export const Register = () => {
                     <label htmlFor="verifyPassword"> Verify Password </label>
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
                 </fieldset>
+                
                 <fieldset>
-                    <label htmlFor="verifyPassword"> Ticket Holder? </label>
+                    <label htmlFor="ticketHolder"> I am a Ticket Holder who would like to Donate my Tickets? </label>
                     <input type="checkbox" checked={isTicketHolder} onClick={() =>{setIsTicketHolder(!isTicketHolder)}}/>
                 </fieldset>
+                <fieldset>
+                    <label htmlFor="organization"> Organization </label>
+                    <input ref={organization} type="text" name="organization" className="form-control" placeholder=" Please provide if you are not a ticket holder " />
+                </fieldset>
+
                 <fieldset style={{
                     textAlign: "center"
                 }}>
                     <button className="btn btn-1 btn-sep icon-send" type="submit">Register</button>
                 </fieldset>
+
+                
             </form>
             <section className="link--register">
                 Already registered? <Link to="/login">Login</Link>

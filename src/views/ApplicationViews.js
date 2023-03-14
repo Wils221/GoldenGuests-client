@@ -1,19 +1,16 @@
-import { Route, Routes } from "react-router-dom"
-import { Login } from "../components/auth/Login"
-import { Register } from "../components/auth/Register"
-import { Authorized } from "./Authorized"
+import { OrgViews } from "./OrgViews"
+import { TicketHolderViews } from "./TicketHolderViews"
 
-
+// this function is checking to see if the person who logged in is an employee. IF they are it will return the vioew for employees. if they are not it will return the customer view
 export const ApplicationViews = () => {
     
-
-    return <>
-        <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route element={<Authorized />}>
-            </Route>            
-        </Routes>
-        
-    </>
+    const localGGUser = localStorage.getItem("gg_user")
+    const GoldenGuestUserObject = JSON.parse(localGGUser)
+    
+        if (GoldenGuestUserObject.isTicketHolder) {
+            return <OrgViews />
+        }
+        else {
+            return <TicketHolderViews/>
+        }
 }

@@ -6,23 +6,17 @@ export const NavBar = () => {
     return (
         <ul className="navbar">
             <li className="navbar__item">
-                <Link className="nav-link" to="/games">Games</Link>
+                <Link className="nav-link" to="/games">Home</Link>
             </li>
             <li className="navbar__item">
-                <Link className="nav-link" to="/gameform">Add a Game</Link>
-            </li>
-            <li className="navbar__item">
-            <Link className="nav-link" to="/events">Events</Link>
-            </li>
-            <li className="navbar__item">
-            <Link className="nav-link" to="/eventform">Add an Event</Link>
+            <Link className="nav-link" to="/events">Donate</Link>
             </li>
             {
-                (localStorage.getItem("lu_token") !== null) ?
+                (localStorage.getItem("gg_user") !== null) ?
                     <li className="nav-item">
                         <button className="nav-link fakeLink"
                             onClick={() => {
-                                localStorage.removeItem("lu_token")
+                                localStorage.removeItem("gg_user")
                                 navigate('/login')
                             }}
                         >Logout</button>
