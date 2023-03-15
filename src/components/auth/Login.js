@@ -20,7 +20,7 @@ export const Login = () => {
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem("gg_user", res.token)
-                    navigate("/ApplicationViews")
+                    navigate("/tickets")
                 }
                 else {
                     invalidDialog.current.showModal()

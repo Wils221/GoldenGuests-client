@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { fetchIt } from "../../utils/fetchIt";
-
+import { useHistory} from "react"
+import {fetchIt} from "react"
 export const TicketForm = () => {
   const [ticket, updateTicket] = useState({
     section: "",

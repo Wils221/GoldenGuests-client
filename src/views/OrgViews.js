@@ -1,6 +1,7 @@
-import { Outlet, Route, Routes } from "react-router-dom"
+import { Route, Routes, Outlet } from "react-router-dom"
+import { OrgTicketBoard } from "../components/OrgTickets/AvailableTicketsBoard"
 
-export const OrgTicketViews = () => {
+export const OrgViews = () => {
 	return (
         <Routes>
             <Route path="/" element={
@@ -11,7 +12,10 @@ export const OrgTicketViews = () => {
                     <Outlet />
                 </>
             }>
-            
+                <Route path="claimedtickets" element={ <OrgTicketBoard /> } />
+                <Route path="availabletickets" element={ <OrgTicketBoard /> } />
+                
+            </Route>
         </Routes>
     )
 }
