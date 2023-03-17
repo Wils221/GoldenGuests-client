@@ -6,6 +6,7 @@ export const ApplicationViews = () => {
     const localGGUser = localStorage.getItem("gg_user")
     const GoldenGuestUserObject = JSON.parse(localGGUser)
     
+    
         if (GoldenGuestUserObject.isTicketHolder) {
             return <TicketHolderViews/>
         }

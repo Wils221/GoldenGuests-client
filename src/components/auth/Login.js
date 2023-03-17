@@ -19,7 +19,10 @@ export const Login = () => {
         loginUser(user)
         .then((res) => {
             if ("valid" in res && res.valid && "token" in res) {
-                localStorage.setItem("gg_user", res.token);
+                localStorage.setItem("gg_user", JSON.stringify({
+                    token: res.token,
+                    isTicketHolder: res.isTicketHolder
+                }))
                 
                 if (res.isTicketHolder) {
                     navigate("/ticketholdertickets");

@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { getAllTickets, deleteTicket } from "../../managers/THManager";
 
 export const TicketHolderTicketList = ({ ticketHolderId }) => {
   const [tickets, setTickets] = useState([]);
 
-  const getAllTickets = () => {
-    fetch(`http://localhost:8088/tickets`)
-        .then(response => response.json())
-        .then((ticketArray) => {
-            setTickets(ticketArray)
-        })
-}
-
   useEffect(() => {
-    getAllTickets();
-  }, []);
+      getAllTickets().then(data => setTickets(data))
+  }, [])
+
 
   const deleteButton = (id) => {
     if (window.confirm("Are you sure you want to delete this post?")) {
@@ -35,8 +29,8 @@ export const TicketHolderTicketList = ({ ticketHolderId }) => {
       <ul>
         {tickets.map((ticket) => (
           <li key={ticket.id}>
-            Section: {ticket.section} | No. of tickets: {ticket.numberOfTickets} | Date: {ticket.date}{" "}
-            | Opponent: {ticket.opponent}
+            Section: {ticket.section} | No. of tickets: {ticket.number_of_tickets} | Date: {ticket.date}{" "}
+            | Opponent: {ticket.opponent.opponent}
             <button onClick={() => deleteButton(ticket.id)}>Delete</button>
             <button>Edit</button>
           </li>

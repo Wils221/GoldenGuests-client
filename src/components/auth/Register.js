@@ -63,7 +63,7 @@ export const Register = () => {
 
                 <fieldset>
                     <label htmlFor="inputUsername">Email Address </label>
-                    <input ref={username} type="text" name="email" className="form-control" placeholder="Email" required />
+                    <input ref={email} type="text" name="email" className="form-control" placeholder="Email" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputUsername">Username</label>
@@ -80,7 +80,7 @@ export const Register = () => {
                 
                 <fieldset>
                     <label htmlFor="ticketHolder"> I am a Ticket Holder who would like to Donate my Tickets? </label>
-                    <input type="checkbox" checked={isTicketHolder} onClick={() =>{setIsTicketHolder(!isTicketHolder)}}/>
+                    <input type="checkbox" checked={isTicketHolder} onChange={() =>{setIsTicketHolder(!isTicketHolder)}}/>
                 </fieldset>
                 <fieldset>
                     <label htmlFor="organization"> Organization </label>

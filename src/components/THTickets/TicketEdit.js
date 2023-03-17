@@ -1,37 +1,43 @@
-export const TicketEdit = () => {
-    const [ticket, updateTicket] = useState({
+import React, { useState, useEffect,  } from "react";
+import "../THTickets/Tickets.css"
+import { useNavigate } from "react-router-dom";
+import { getOpponents, updateTickets } from "../../managers/THManager";
+
+
+export const TicketForm = () => {
+  const [ticket, updateTicket] = useState({
     section: "",
-    numberOfTickets: "",
+    number_of_tickets: "",
     date: "",
-    opponent: "",
-});
+    opponent: ""
+  });
 
-const [opponents, setOpponents] = useState([]);
+  const [opponents, setOpponents] = useState([]);
+  
+  const navigate = useNavigate();
 
-const history = useHistory();
+  useEffect(() => {
+    getOpponents().then(data => setOpponents(data))
+}, [])
 
-useEffect(() => {
-    //Fetches the list of opponents from the API and sets it in the state.
-    fetchIt("http://localhost:8000/opponents")
-      .then((data) => setOpponents(data))
-      .catch((error) => console.error(error));
-  }, []);
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    const copy = { ...ticket };
-    copy[name] = value;
-    updateTicket(copy);
-  };
+const changeTicketState = (event) => {
+  const copy = { ...ticket }
+  copy[event.target.name] = event.target.value
+  updateTicket(copy)
+}
 
   const submitTicket = (evt) => {
     evt.preventDefault();
 
-    fetchIt("http://localhost:8000/tickets", {
-      method: "POST",
-      body: JSON.stringify(ticket),
-    }).then(() => history.push("/tickets"));
-  };
+    const newticket = {
+      section: parseInt(ticket.section),
+      number_of_tickets: parseInt(ticket.number_of_tickets),
+      date: ticket.date,
+      opponent: parseInt(ticket.opponent)
+  }
+  updateTicket(newticket)
+  .then(() => navigate("/ticketholdertickets"))
+  }
 
   return (
     <form className="ticketForm">
@@ -40,7 +46,7 @@ useEffect(() => {
         <div className="form-group">
           <label htmlFor="section">Section:</label>
           <input
-            onChange={handleInputChange}
+            onChange={changeTicketState}
             required
             autoFocus
             type="text"
@@ -54,18 +60,18 @@ useEffect(() => {
       </fieldset>
       <fieldset>
         <div className="form-group">
-          <label htmlFor="numberOfTickets">Number Of Tickets:</label>
+          <label htmlFor="number_of_tickets">Number Of Tickets:</label>
           <input
-            onChange={handleInputChange}
+            onChange={changeTicketState}
             required
             type="number"
-            id="numberOfTickets"
-            name="numberOfTickets"
+            id="number_of_tickets"
+            name="number_of_tickets"
             className="form-control"
             placeholder="Enter number of tickets"
             min="1"
-            max="100"
-            value={ticket.numberOfTickets}
+            max="10"
+            value={ticket.number_of_tickets}
           />
         </div>
       </fieldset>
@@ -73,7 +79,7 @@ useEffect(() => {
         <div className="form-group">
           <label htmlFor="date">Date:</label>
           <input
-            onChange={handleInputChange}
+            onChange={changeTicketState}
             required
             type="date"
             id="date"
@@ -88,19 +94,17 @@ useEffect(() => {
         <div className="form-group">
           <label htmlFor="opponent">Opponent:</label>
           <select
-            onChange={handleInputChange}
+            onChange={changeTicketState}
             required
             id="opponent"
             name="opponent"
             className="form-control"
             value={ticket.opponent}
           >
-            <option value="" disabled>
-              Select an opponent
-            </option>
-            {opponents.map((opponent) => (
-              <option key={opponent.id} value={opponent.opponent}>
-                {opponent.name}
+            <option value="" disabled>Select an opponent</option>
+            {opponents.map(opponent => (
+              <option key={opponent.id} value={opponent.id}>
+                {opponent.opponent}
               </option>
             ))}
           </select>

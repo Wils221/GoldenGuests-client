@@ -9,7 +9,7 @@ export const THNav= () => {
                 <Link className="nav-link" to="/games">Home</Link>
             </li>
             <li className="navbar__item">
-            <Link className="nav-link" to="/events">Donate</Link>
+            <Link className="nav-link" to="/ticket/create">Donate</Link>
             </li>
             {
                 (localStorage.getItem("gg_user") !== null) ?
