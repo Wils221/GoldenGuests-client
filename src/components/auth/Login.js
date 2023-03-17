@@ -14,19 +14,24 @@ export const Login = () => {
         e.preventDefault()
         const user = {
             username: username.current.value,
-            password: password.current.value
+            password: password.current.value,
         }
         loginUser(user)
-            .then(res => {
-                if ("valid" in res && res.valid && "token" in res) {
-                    localStorage.setItem("gg_user", res.token)
-                    navigate("/tickets")
+        .then((res) => {
+            if ("valid" in res && res.valid && "token" in res) {
+                localStorage.setItem("gg_user", res.token);
+                
+                if (res.isTicketHolder) {
+                    navigate("/ticketholdertickets");
+                } else {
+                    navigate("/claimedtickets");
                 }
-                else {
-                    invalidDialog.current.showModal()
-                }
-            })
-    }
+            } else {
+                invalidDialog.current.showModal();
+            }
+        })
+    };
+
 
     return (
         <main className="container--login">
@@ -59,3 +64,4 @@ export const Login = () => {
         </main>
     )
 }
+

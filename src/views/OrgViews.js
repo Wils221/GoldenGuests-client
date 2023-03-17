@@ -1,5 +1,6 @@
 import { Route, Routes, Outlet } from "react-router-dom"
-import { OrgTicketBoard } from "../components/OrgTickets/AvailableTicketsBoard"
+import { AvailableTicketBoard } from "../components/OrgTickets/AvailableTickets"
+import { ClaimedTicketBoard } from "../components/OrgTickets/ClaimedTickets"
 
 export const OrgViews = () => {
 	return (
@@ -12,8 +13,8 @@ export const OrgViews = () => {
                     <Outlet />
                 </>
             }>
-                <Route path="claimedtickets" element={ <OrgTicketBoard /> } />
-                <Route path="availabletickets" element={ <OrgTicketBoard /> } />
+                <Route path="/claimedtickets" element={ <ClaimedTicketBoard /> } />
+                <Route path="/availabletickets" element={ <AvailableTicketBoard /> } />
                 
             </Route>
         </Routes>

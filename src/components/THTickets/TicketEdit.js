@@ -1,31 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { useHistory} from "react"
-import {fetchIt} from "react"
-import "../THTickets/Tickets.css"
-
-
-export const TicketForm = () => {
-  const [ticket, updateTicket] = useState({
+export const TicketEdit = () => {
+    const [ticket, updateTicket] = useState({
     section: "",
     numberOfTickets: "",
     date: "",
-    opponent: ""
-  });
+    opponent: "",
+});
 
-  const [opponents, setOpponents] = useState([]);
-  
-  const history = useHistory();
+const [opponents, setOpponents] = useState([]);
 
-  useEffect(() => {
+const history = useHistory();
+
+useEffect(() => {
     //Fetches the list of opponents from the API and sets it in the state.
     fetchIt("http://localhost:8000/opponents")
-      .then(data => setOpponents(data))
-      .catch(error => console.error(error));
+      .then((data) => setOpponents(data))
+      .catch((error) => console.error(error));
   }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    const copy = {...ticket};
+    const copy = { ...ticket };
     copy[name] = value;
     updateTicket(copy);
   };
@@ -70,7 +64,7 @@ export const TicketForm = () => {
             className="form-control"
             placeholder="Enter number of tickets"
             min="1"
-            max="10"
+            max="100"
             value={ticket.numberOfTickets}
           />
         </div>
@@ -101,8 +95,10 @@ export const TicketForm = () => {
             className="form-control"
             value={ticket.opponent}
           >
-            <option value="" disabled>Select an opponent</option>
-            {opponents.map(opponent => (
+            <option value="" disabled>
+              Select an opponent
+            </option>
+            {opponents.map((opponent) => (
               <option key={opponent.id} value={opponent.opponent}>
                 {opponent.name}
               </option>

@@ -1,15 +1,15 @@
 import { Link, useNavigate } from "react-router-dom"
 import "./NavBar.css"
 
-export const NavBar = () => {
+export const OrgNav= () => {
     const navigate = useNavigate()
     return (
         <ul className="navbar">
             <li className="navbar__item">
-                <Link className="nav-link" to="/games">Home</Link>
+                <Link className="nav-link" to="/claimedtickets">Home</Link>
             </li>
             <li className="navbar__item">
-            <Link className="nav-link" to="/events">Get Tickets</Link>
+            <Link className="nav-link" to="/">Get Tickets</Link>
             </li>
             {
                 (localStorage.getItem("gg_user") !== null) ?

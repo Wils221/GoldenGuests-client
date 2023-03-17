@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-export const OrgTicketBoard = ({ ticketHolderId }) => {
+
+export const ClaimedTicketBoard = ({ ticketHolderId }) => {
   const [tickets, setTickets] = useState([]);
 
   const getAllTickets = () => {

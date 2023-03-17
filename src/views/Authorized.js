@@ -1,8 +1,15 @@
-import { Navigate, Outlet } from "react-router-dom"
+import { Navigate, useLocation } from "react-router-dom"
 
-export const Authorized = () => {
-  if (localStorage.getItem("gg_user")) {
-    return <Outlet />
-  }
-  return <Navigate to='/login' replace />
+export const Authorized = ({ children }) => {
+    const location = useLocation()
+
+    if (localStorage.getItem("gg_user")) {
+        return children
+    }
+    else {
+        return <Navigate
+            to={`/login/${location.search}`}
+            replace
+            state={{ location }} />
+    }
 }

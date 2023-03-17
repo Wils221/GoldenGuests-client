@@ -2,6 +2,8 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: left;
+    background-color: #1F1645;
+    color: #EBE839;
 }
 
 .navbar__item {

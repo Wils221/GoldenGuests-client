@@ -9,6 +9,7 @@ export const Register = () => {
     const username = useRef()
     const organization =useRef()
     const password = useRef()
+    const email = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
     const navigate = useNavigate()
@@ -22,6 +23,7 @@ export const Register = () => {
                 "username": username.current.value,
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
+                "email": email.current.value,
                 "password": password.current.value,
                 "organization": organization.current.value,
                 "isTicketHolder": isTicketHolder
@@ -57,6 +59,11 @@ export const Register = () => {
                 <fieldset>
                     <label htmlFor="lastName"> Last Name </label>
                     <input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
+                </fieldset>
+
+                <fieldset>
+                    <label htmlFor="inputUsername">Email Address </label>
+                    <input ref={username} type="text" name="email" className="form-control" placeholder="Email" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputUsername">Username</label>
