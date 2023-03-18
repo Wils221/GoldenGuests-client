@@ -17,6 +17,20 @@ const GoldenGuestUserObject = JSON.parse(localGGUser)
     },
   }).then((response) => response.json());
 };
+
+export const createOrgTicket = (tickets) => {
+  const localGGUser = localStorage.getItem("gg_user")
+  const GoldenGuestUserObject = JSON.parse(localGGUser)
+    return fetch(`http://localhost:8000/orgtickets`, {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${GoldenGuestUserObject.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(tickets),
+    });
+  };
+
 export const getAllOrgTickets = () => {
 const localGGUser = localStorage.getItem("gg_user")
 const GoldenGuestUserObject = JSON.parse(localGGUser)

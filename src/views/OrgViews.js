@@ -8,7 +8,7 @@ export const OrgViews = () => {
             <Route path="/" element={
                 <>
                     <h1>Golden Guests</h1>
-                    <div>Your one-stop-shop to Donate your NSC Tickets to local organizations</div>
+                    <div>Claim Donated Tickets from Nashville Soccer Club Ticket Holders. Simply click the "Claim" button, then contact to Donor listed on the ticket to arragne for transfer of the tickets. </div>
 
                     <Outlet />
                 </>

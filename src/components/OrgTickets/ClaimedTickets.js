@@ -1,34 +1,24 @@
 import React, { useEffect, useState } from "react";
-
+import { getAllOrgTickets, deleteOrgTicket } from "../../managers/OrgManager";
 
 export const ClaimedTicketBoard = ({ ticketHolderId }) => {
-  const [tickets, setTickets] = useState([]);
-
-  const getAllTickets = () => {
-    fetch(`http://localhost:8088/tickets`)
-        .then(response => response.json())
-        .then((ticketArray) => {
-            setTickets(ticketArray)
-        })
-}
+  const [orgtickets, setOrgTickets] = useState([]);
 
   useEffect(() => {
-    getAllTickets();
-  }, []);
+    const fetchTickets = async () => {
+      const ticketArray = await getAllOrgTickets(ticketHolderId);
+      setTickets(ticketArray);
+    };
+    fetchTickets();
+  }, [ticketHolderId]);
 
-  const deleteButton = (id) => {
+  const deleteButton = async (id) => {
     if (window.confirm("Are you sure you want to delete this post?")) {
-        fetch(`http://localhost:8000/tickets/${id}`, {
-            method: "DELETE",
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("auth_token")}`
-            }    
-        })
-        .then(() => {
-            getAllTickets()
-        })
+      await deleteOrgTicket(id);
+      const updatedTickets = tickets.filter((ticket) => ticket.id !== id);
+      setTickets(updatedTickets);
     }
-}
+  };
 
   return (
     <div className="ticket-list">
@@ -38,7 +28,9 @@ export const ClaimedTicketBoard = ({ ticketHolderId }) => {
           <li key={ticket.id}>
             Section: {ticket.section} | No. of tickets: {ticket.numberOfTickets} | Date: {ticket.date}{" "}
             | Opponent: {ticket.opponent}
-            <button className="delete-button" onClick={()=> {deleteButton(tickets.id)}}>Delete</button>
+            <button className="delete-button" onClick={() => deleteButton(ticket.id)}>
+              Delete
+            </button>
             <button>Edit</button>
           </li>
         ))}

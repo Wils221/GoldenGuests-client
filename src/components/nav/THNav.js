@@ -6,7 +6,7 @@ export const THNav= () => {
     return (
         <ul className="navbar">
             <li className="navbar__item">
-                <Link className="nav-link" to="/games">Home</Link>
+                <Link className="nav-link" to="/ticketholdertickets">Home</Link>
             </li>
             <li className="navbar__item">
             <Link className="nav-link" to="/ticket/create">Donate</Link>

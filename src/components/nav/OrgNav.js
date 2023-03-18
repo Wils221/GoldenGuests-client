@@ -9,7 +9,7 @@ export const OrgNav= () => {
                 <Link className="nav-link" to="/claimedtickets">Home</Link>
             </li>
             <li className="navbar__item">
-            <Link className="nav-link" to="/">Get Tickets</Link>
+            <Link className="nav-link" to="/availabletickets">Get Tickets</Link>
             </li>
             {
                 (localStorage.getItem("gg_user") !== null) ?

@@ -37,7 +37,7 @@ const GoldenGuestUserObject = JSON.parse(localGGUser)
     },
   }).then((response) => response.json());
 };
-export const updateTickets = (tickets, ticketId) => {
+export const updateTicket = (tickets, ticketId) => {
 const localGGUser = localStorage.getItem("gg_user")
 const GoldenGuestUserObject = JSON.parse(localGGUser)
   return fetch(`http://localhost:8000/tickets/${ticketId}`, {
@@ -65,7 +65,7 @@ const GoldenGuestUserObject = JSON.parse(localGGUser)
 export const deleteTicket = (id) => {
 const localGGUser = localStorage.getItem("gg_user")
 const GoldenGuestUserObject = JSON.parse(localGGUser)
-  return fetch(`http://localhost:8000/ticket/${id}`, {
+  return fetch(`http://localhost:8000/tickets/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Token ${GoldenGuestUserObject.token}`,
