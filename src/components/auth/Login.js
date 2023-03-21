@@ -21,7 +21,8 @@ export const Login = () => {
             if ("valid" in res && res.valid && "token" in res) {
                 localStorage.setItem("gg_user", JSON.stringify({
                     token: res.token,
-                    isTicketHolder: res.isTicketHolder
+                    isTicketHolder: res.isTicketHolder,
+                    user: res.user
                 }))
                 
                 if (res.isTicketHolder) {

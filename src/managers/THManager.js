@@ -1,8 +1,8 @@
-export const getAllTickets = () => {
+export const getAllTickets = (id) => {
 const localGGUser = localStorage.getItem("gg_user")
 const GoldenGuestUserObject = JSON.parse(localGGUser)
 
-  return fetch(`http://localhost:8000/tickets`, {
+  return fetch(`http://localhost:8000/tickets?user=${id}`, {
     headers: {
       Authorization: `Token ${GoldenGuestUserObject.token}`,
     },

@@ -1,38 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { getAllOrgTickets, deleteOrgTicket } from "../../managers/OrgManager";
+import { useNavigate } from "react-router-dom";
+import { deleteOrgTicket, getAllClaimedTickets } from "../../managers/OrgManager";
 
 export const ClaimedTicketBoard = ({ ticketHolderId }) => {
   const [orgtickets, setOrgTickets] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
-    const fetchTickets = async () => {
-      const ticketArray = await getAllOrgTickets(ticketHolderId);
-      setTickets(ticketArray);
-    };
-    fetchTickets();
-  }, [ticketHolderId]);
+    getAllClaimedTickets()
+    .then((data) => {
+        const ClaimedTickets = data
+        setOrgTickets(ClaimedTickets)
+    })
+},
+[]
+)
 
-  const deleteButton = async (id) => {
-    if (window.confirm("Are you sure you want to delete this post?")) {
-      await deleteOrgTicket(id);
-      const updatedTickets = tickets.filter((ticket) => ticket.id !== id);
-      setTickets(updatedTickets);
-    }
-  };
+  
 
   return (
     <div className="ticket-list">
       <h2>My Tickets</h2>
       <ul>
-        {tickets.map((ticket) => (
-          <li key={ticket.id}>
-            Section: {ticket.section} | No. of tickets: {ticket.numberOfTickets} | Date: {ticket.date}{" "}
-            | Opponent: {ticket.opponent}
-            <button className="delete-button" onClick={() => deleteButton(ticket.id)}>
-              Delete
-            </button>
-            <button>Edit</button>
-          </li>
+        {orgtickets.map((orgTicket) => (
+          <li key={orgTicket.id}>
+            Section: {orgTicket.section} | No. of Tickets: {orgTicket.number_of_tickets} | Date: {orgTicket.date}
+            | Opponent: {orgTicket.opponent.opponent} | Donor Name: {orgTicket.goldenguest.first_name} | Contact Email: {orgTicket.goldenguest.email}
+            <button className="btn-delete"
+                        onClick={() => {
+                            deleteOrgTicket(orgTicket.id)
+                            .then(() => {navigate("/claimedtickets")
+                            })
+                        }}
+                        >Delete Appointment</button>
+            </li>
         ))}
       </ul>
     </div>

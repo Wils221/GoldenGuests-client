@@ -1,12 +1,21 @@
-export const getAllTickets = () => {
+export const getAllClaimedTickets = () => {
 const localGGUser = localStorage.getItem("gg_user")
 const GoldenGuestUserObject = JSON.parse(localGGUser)
-  return fetch(`http://localhost:8000/tickets`, {
+  return fetch(`http://localhost:8000/tickets?isOrgTicket=True`, {
     headers: {
       Authorization: `Token ${GoldenGuestUserObject.token}`,
     },
   }).then((response) => response.json());
 };
+export const getAllUnclaimedTickets = () => {
+  const localGGUser = localStorage.getItem("gg_user")
+  const GoldenGuestUserObject = JSON.parse(localGGUser)
+    return fetch(`http://localhost:8000/tickets?isOrgTicket=False`, {
+      headers: {
+        Authorization: `Token ${GoldenGuestUserObject.token}`,
+      },
+    }).then((response) => response.json());
+  };
 export const getSingleTicket = (ticketId) => {
 const localGGUser = localStorage.getItem("gg_user")
 const GoldenGuestUserObject = JSON.parse(localGGUser)
@@ -18,7 +27,7 @@ const GoldenGuestUserObject = JSON.parse(localGGUser)
   }).then((response) => response.json());
 };
 
-export const createOrgTicket = (tickets) => {
+export const createOrgTicket = (orgtickets) => {
   const localGGUser = localStorage.getItem("gg_user")
   const GoldenGuestUserObject = JSON.parse(localGGUser)
     return fetch(`http://localhost:8000/orgtickets`, {
@@ -27,7 +36,7 @@ export const createOrgTicket = (tickets) => {
         Authorization: `Token ${GoldenGuestUserObject.token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(tickets),
+      body: JSON.stringify(orgtickets),
     });
   };
 
@@ -88,7 +97,7 @@ const GoldenGuestUserObject = JSON.parse(localGGUser)
 export const deleteTicket = (id) => {
 const localGGUser = localStorage.getItem("gg_user")
 const GoldenGuestUserObject = JSON.parse(localGGUser)
-  return fetch(`http://localhost:8000/ticket/${id}`, {
+  return fetch(`http://localhost:8000/tickets/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Token ${GoldenGuestUserObject.token}`,

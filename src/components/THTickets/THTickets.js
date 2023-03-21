@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { getAllTickets, deleteTicket, updateTicket } from "../../managers/THManager";
+import { getAllTickets, deleteTicket } from "../../managers/THManager";
+import { useNavigate } from "react-router-dom";
 
 export const TicketHolderTicketList = ({ ticketHolderId }) => {
   const [tickets, setTickets] = useState([]);
-  const [editId, setEditId] = useState(null);
-  const [updatedTicket, setUpdatedTicket] = useState(null);
-  useEffect(() => {
-      getAllTickets().then(data => setTickets(data))
-  }, [])
+  const navigate = useNavigate()
+  const auth = localStorage.getItem("gg_user")
+  const userId = JSON.parse(auth).user
 
   useEffect(() => {
-    if (updatedTicket) {
-      updateTicket(updatedTicket).then(() => {
-        getAllTickets().then((data) => setTickets(data));
-        setUpdatedTicket(null);
-      });
-    }
-  }, [updatedTicket]);
-      
+      getAllTickets(userId).then(data => setTickets(data))
+  }, [])
+
+
 
   const deleteButton = (id) => {
     if (window.confirm("Are you sure you want to delete this post?")) {
@@ -25,9 +20,6 @@ export const TicketHolderTicketList = ({ ticketHolderId }) => {
         getAllTickets().then(data => setTickets(data));
       });
     }
-}
-const editButton = (id) => {
-  setEditId(id);
 }
 
   return (
@@ -38,8 +30,8 @@ const editButton = (id) => {
           <li key={ticket.id}>
             Section: {ticket.section} | No. of tickets: {ticket.number_of_tickets} | Date: {ticket.date}{" "}
             | Opponent: {ticket.opponent.opponent}
-            <button onClick={() => deleteButton(ticket.id)}>Delete</button>
-            <button onClick={() => editButton(ticket.id)}>Edit</button>
+            <button onClick={() => deleteButton(ticket.id)}>Remove Listing</button>
+            <button onClick={() => { navigate(`/ticketedit/${ticket.id}`) }}>Edit Listing</button>
           </li>
         ))}
       </ul>
