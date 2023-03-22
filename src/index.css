@@ -43,8 +43,8 @@ code {
 	border: none;
 	font-family: Menlo;
 	font-size: inherit;
-	color: inherit;
-	background: none;
+	color: #ebe839;
+	background: #1f1645;
 	cursor: pointer;
 	padding: 25px 80px;
 	display: inline-block;

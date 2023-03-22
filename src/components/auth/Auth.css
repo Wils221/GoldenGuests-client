@@ -1,3 +1,12 @@
+
+
+body {
+    background-image: url("GeodisPark.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
 .h1, h1 {
     font-size: 2.5rem;
 }
@@ -15,9 +24,9 @@ fieldset {
     text-align: left;
 }
 
-.form--login > fieldset > input[type="email"],
+.form--login > fieldset > input[type="username"],
 .form--login > fieldset > input[type="password"] {
-    width: 25em;
+    text-align: center;
 }
 
 .label--login {
@@ -49,15 +58,23 @@ fieldset {
 .form--login {
     background-size: cover;
     background-position-x: center;
-    background-image: url('./GeodisPark.jpeg');
+    background-color: #1F1645;
     z-index: 1;
     min-height: 25rem;
     min-width: 45rem;
     padding: 0 5rem;
-    background-color: hsla(0,0%,100%,0.75);
+    background-color: #1F1645;
     background-blend-mode: overlay;
     background-repeat: no-repeat;
+    color:#EBE839;
+    
+    text-align: center;
 }
+.btn-1 {
+    background-color: #EBE839;
+    color: #1F1645;
+}
+
 
 .button--close {
     position: relative;

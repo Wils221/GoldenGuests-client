@@ -2,6 +2,7 @@ import React, { useState, useEffect,  } from "react";
 import "../THTickets/Tickets.css"
 import { useNavigate } from "react-router-dom";
 import { getOpponents, createTickets } from "../../managers/THManager";
+import "./Tickets.css" 
 
 
 export const TicketForm = () => {
@@ -40,10 +41,11 @@ const changeTicketState = (event) => {
   }
 
   return (
+    <div className="ticketbox">
     <form className="ticketForm">
       <h2 className="ticketForm__title"> Ticket Donation Form </h2>
       <fieldset>
-        <div className="form-group">
+        <div className="Ticketform-group">
           <label htmlFor="section">Section:</label>
           <input
             onChange={changeTicketState}
@@ -59,7 +61,7 @@ const changeTicketState = (event) => {
         </div>
       </fieldset>
       <fieldset>
-        <div className="form-group">
+        <div className="Ticketform-group">
           <label htmlFor="number_of_tickets">Number Of Tickets:</label>
           <input
             onChange={changeTicketState}
@@ -76,7 +78,7 @@ const changeTicketState = (event) => {
         </div>
       </fieldset>
       <fieldset>
-        <div className="form-group">
+        <div className="Ticketform-group">
           <label htmlFor="date">Date:</label>
           <input
             onChange={changeTicketState}
@@ -91,7 +93,7 @@ const changeTicketState = (event) => {
         </div>
       </fieldset>
       <fieldset>
-        <div className="form-group">
+        <div className="Ticketform-group">
           <label htmlFor="opponent">Opponent:</label>
           <select
             onChange={changeTicketState}
@@ -114,5 +116,6 @@ const changeTicketState = (event) => {
         Donate Tickets
       </button>
     </form>
+    </div>
   );
 };

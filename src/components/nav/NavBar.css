@@ -1,12 +1,25 @@
 .navbar {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: left;
+    justify-content: center;
     background-color: #1F1645;
     color: #EBE839;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 1px 3px 4px #EBE839;
+    margin-bottom: 0;
+    
 }
 
 .navbar__item {
     flex-basis: 20%;
     list-style-type: none;
 }
+h1, h2, nav-link{
+    color: #1F1645;
+    text-align: center;
+}
+.nav-link{
+    color: #EBE839;
+}
+

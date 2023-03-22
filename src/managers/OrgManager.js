@@ -16,6 +16,7 @@ export const getAllUnclaimedTickets = () => {
       },
     }).then((response) => response.json());
   };
+  
 export const getSingleTicket = (ticketId) => {
 const localGGUser = localStorage.getItem("gg_user")
 const GoldenGuestUserObject = JSON.parse(localGGUser)
@@ -40,10 +41,10 @@ export const createOrgTicket = (orgtickets) => {
     });
   };
 
-export const getAllOrgTickets = () => {
+export const getAllOrgTickets = (id) => {
 const localGGUser = localStorage.getItem("gg_user")
 const GoldenGuestUserObject = JSON.parse(localGGUser)
-  return fetch(`http://localhost:8000/orgtickets`, {
+  return fetch(`http://localhost:8000/orgtickets?orguser=${id}`, {
     headers: {
       Authorization: `Token ${GoldenGuestUserObject.token}`,
     },

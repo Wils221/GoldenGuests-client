@@ -4,6 +4,8 @@ import { loginUser } from "../../managers/AuthManager"
 import "./Auth.css"
 
 
+
+
 export const Login = () => {
     const username = useRef()
     const password = useRef()
@@ -45,7 +47,7 @@ export const Login = () => {
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Level Up</h1>
+                    <h1>Golden Guests</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputUsername"> Username </label>

@@ -10,7 +10,7 @@ export const TicketHolderViews = () => {
             <Route path="/" element={
                 <>
                     <h1>Golden Guests</h1>
-                    <div>Your one-stop-shop to Donate your NSC Tickets to local organizations</div>
+                    <h2>Your one-stop-shop to Donate your NSC Tickets to local organizations</h2>
 
                     <Outlet />
                 </>
